@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: zara-pricing-consumer
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: price-consumer-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+      auto-offset-reset: earliest
+      properties:
+        schema.registry.url: http://localhost:8081
+        specific.avro.reader: false
+  data:
+    mongodb:
+      uri: mongodb://admin:password@localhost:27017/preciosdb?authSource=admin
+server:
+    port: 8085
+
+kafka:
+  topics:
+    pricing-events: pricing-events
